@@ -56,7 +56,8 @@ let prodIdxToNonTerminal (prodIdx:int) =
   match prodIdx with
     | 0 -> NONTERM__startstart 
     | 1 -> NONTERM_start 
-    | 2 -> NONTERM_end 
+    | 2 -> NONTERM_start 
+    | 3 -> NONTERM_end 
     | _ -> failwith "prodIdxToNonTerminal: bad production index"
 
 let _fsyacc_endOfInputTag = 7 
@@ -81,16 +82,16 @@ let _fsyacc_dataOfToken (t:token) =
   | LEFTBRACE  -> (null : System.Object) 
 let _fsyacc_gotos = [| 0us; 65535us; 1us; 65535us; 0us; 1us; 0us; 65535us; |]
 let _fsyacc_sparseGotoTableRowOffsets = [|0us; 1us; 3us; |]
-let _fsyacc_stateToProdIdxsTableElements = [| 1us; 0us; 1us; 0us; 1us; 1us; |]
-let _fsyacc_stateToProdIdxsTableRowOffsets = [|0us; 2us; 4us; |]
-let _fsyacc_action_rows = 3
-let _fsyacc_actionTableElements = [|1us; 32768us; 2us; 2us; 0us; 49152us; 0us; 16385us; |]
-let _fsyacc_actionTableRowOffsets = [|0us; 2us; 3us; |]
-let _fsyacc_reductionSymbolCounts = [|1us; 1us; 1us; |]
-let _fsyacc_productionToNonTerminalTable = [|0us; 1us; 2us; |]
-let _fsyacc_immediateActions = [|65535us; 49152us; 16385us; |]
+let _fsyacc_stateToProdIdxsTableElements = [| 1us; 0us; 1us; 0us; 1us; 1us; 1us; 2us; |]
+let _fsyacc_stateToProdIdxsTableRowOffsets = [|0us; 2us; 4us; 6us; |]
+let _fsyacc_action_rows = 4
+let _fsyacc_actionTableElements = [|2us; 32768us; 1us; 3us; 2us; 2us; 0us; 49152us; 0us; 16385us; 0us; 16386us; |]
+let _fsyacc_actionTableRowOffsets = [|0us; 3us; 4us; 5us; |]
+let _fsyacc_reductionSymbolCounts = [|1us; 1us; 1us; 1us; |]
+let _fsyacc_productionToNonTerminalTable = [|0us; 1us; 1us; 2us; |]
+let _fsyacc_immediateActions = [|65535us; 49152us; 16385us; 16386us; |]
 let _fsyacc_reductions ()  =    [| 
-# 93 "src/Parser.fs"
+# 94 "src/Parser.fs"
         (fun (parseState : FSharp.Text.Parsing.IParseState) ->
             let _1 = parseState.GetInput(1) :?> Value in
             Microsoft.FSharp.Core.Operators.box
@@ -99,7 +100,7 @@ let _fsyacc_reductions ()  =    [|
                       raise (FSharp.Text.Parsing.Accept(Microsoft.FSharp.Core.Operators.box _1))
                    )
                  : 'gentype__startstart));
-# 102 "src/Parser.fs"
+# 103 "src/Parser.fs"
         (fun (parseState : FSharp.Text.Parsing.IParseState) ->
             let _1 = parseState.GetInput(1) :?> int in
             Microsoft.FSharp.Core.Operators.box
@@ -110,18 +111,29 @@ let _fsyacc_reductions ()  =    [|
                    )
 # 24 "./src/Parser.fsy"
                  : Value));
-# 113 "src/Parser.fs"
+# 114 "src/Parser.fs"
+        (fun (parseState : FSharp.Text.Parsing.IParseState) ->
+            let _1 = parseState.GetInput(1) :?> float in
+            Microsoft.FSharp.Core.Operators.box
+                (
+                   (
+# 25 "./src/Parser.fsy"
+                                 Float _1 
+                   )
+# 25 "./src/Parser.fsy"
+                 : Value));
+# 125 "src/Parser.fs"
         (fun (parseState : FSharp.Text.Parsing.IParseState) ->
             Microsoft.FSharp.Core.Operators.box
                 (
                    (
-# 27 "./src/Parser.fsy"
+# 28 "./src/Parser.fsy"
                                 3 
                    )
-# 27 "./src/Parser.fsy"
+# 28 "./src/Parser.fsy"
                  : 'gentype_end));
 |]
-# 124 "src/Parser.fs"
+# 136 "src/Parser.fs"
 let tables : FSharp.Text.Parsing.Tables<_> = 
   { reductions= _fsyacc_reductions ();
     endOfInputTag = _fsyacc_endOfInputTag;

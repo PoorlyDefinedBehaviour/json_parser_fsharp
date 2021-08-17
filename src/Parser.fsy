@@ -22,6 +22,7 @@ open Json
 // actions executed as rules are reduced.  
 start: 
   | INT { Int $1 }
+  | FLOAT { Float $1 }
 
 // Using F# keywords for nonterminal names is okay.
 end: EOF { 3 }

@@ -1,3 +1,5 @@
 module Json
 
-type Value = Int of int
+type Value =
+  | Int of int
+  | Float of float

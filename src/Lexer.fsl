@@ -11,6 +11,7 @@ let whitespace = [' ' '\t' ]
 let newline = ('\n' | '\r' '\n')
 let digit = '-'? ['0'-'9']
 let int = digit+
+let float = digit+'.'digit+
 
 rule tokenstream = parse
 | whitespace	{ tokenstream lexbuf }
@@ -18,5 +19,6 @@ rule tokenstream = parse
 | "{" { LEFTBRACE }
 | "}" { RIGHTBRACE }
 | int { INT (int (LexBuffer<_>.LexemeString lexbuf))}
+| float { FLOAT (float (LexBuffer<_>.LexemeString lexbuf))}
 | _    		{ failwith ("ParseError" + LexBuffer<_>.LexemeString lexbuf) }
 | eof   	{ EOF }
