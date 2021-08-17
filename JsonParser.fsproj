@@ -17,6 +17,7 @@
       <OtherFlags>--module Lexer --unicode</OtherFlags>
     </FsLex>
 
+    <Compile Include="src/Json.fs" />
     <Compile Include="src/Parser.fs" />
     <Compile Include="src/Lexer.fs" />
     <Compile Include="src/Program.fs" />

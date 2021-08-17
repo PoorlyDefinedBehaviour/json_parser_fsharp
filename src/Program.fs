@@ -2,17 +2,14 @@ module Program
 
 open FSharp.Text.Lexing
 open Lexer
+open Parser
 
 let parse input =
-  let ast =
-    LexBuffer<char>.FromString input
-    |> Lexer.tokenstream
-
-  ast
+  Parser.start Lexer.tokenstream (LexBuffer<char>.FromString input)
 
 
 [<EntryPoint>]
 let main _ =
-  printfn "%A" (parse "-1432432")
+  printfn "%A" (parse "123")
 
   0
