@@ -8,6 +8,8 @@
 
 %token LEFTBRACE
 %token RIGHTBRACE
+%token <int> INT 
+%token <float> FLOAT
 
 %token EOF
 

@@ -2,10 +2,14 @@
 module Parser
 type token = 
   | EOF
+  | FLOAT of (float)
+  | INT of (int)
   | RIGHTBRACE
   | LEFTBRACE
 type tokenId = 
     | TOKEN_EOF
+    | TOKEN_FLOAT
+    | TOKEN_INT
     | TOKEN_RIGHTBRACE
     | TOKEN_LEFTBRACE
     | TOKEN_end_of_input

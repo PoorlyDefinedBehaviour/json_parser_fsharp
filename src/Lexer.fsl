@@ -1,5 +1,6 @@
 {
 open FSharp.Text.Lexing
+open Parser 
 
 let newline (lexbuf: LexBuffer<_>) = 
   lexbuf.StartPos <- lexbuf.StartPos.NextLine
@@ -8,11 +9,14 @@ let newline (lexbuf: LexBuffer<_>) =
 // Regular expressions
 let whitespace = [' ' '\t' ]
 let newline = ('\n' | '\r' '\n')
+let digit = '-'? ['0'-'9']
+let int = digit+
 
 rule tokenstream = parse
 | whitespace	{ tokenstream lexbuf }
 | newline	{ newline lexbuf; tokenstream lexbuf }
-| "{" { Parser.LEFTBRACE }
-| "}" { Parser.RIGHTBRACE }
+| "{" { LEFTBRACE }
+| "}" { RIGHTBRACE }
+| int { INT (int (LexBuffer<_>.LexemeString lexbuf))}
 | _    		{ failwith ("ParseError" + LexBuffer<_>.LexemeString lexbuf) }
-| eof   	{ Parser.EOF }
+| eof   	{ EOF }

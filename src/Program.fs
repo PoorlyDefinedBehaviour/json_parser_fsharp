@@ -13,6 +13,6 @@ let parse input =
 
 [<EntryPoint>]
 let main _ =
-  printfn "%A" (parse "{")
+  printfn "%A" (parse "-1432432")
 
   0
