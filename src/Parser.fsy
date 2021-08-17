@@ -1,0 +1,27 @@
+%{
+
+
+%}
+
+// The start token becomes a parser function in the compiled code:
+%start start
+
+%token LEFTBRACE
+%token RIGHTBRACE
+
+%token EOF
+
+// This is the type of the data produced by a successful reduction of the 'start'
+// symbol:
+%type < int > start
+
+%%
+
+// These are the rules of the grammar along with the F# code of the 
+// actions executed as rules are reduced.  
+start: 
+  | LEFTBRACE end { 1 }
+  | RIGHTBRACE end { 2 }
+
+// Using F# keywords for nonterminal names is okay.
+end: EOF { 3 }
