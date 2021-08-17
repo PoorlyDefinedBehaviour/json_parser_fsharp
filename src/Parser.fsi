@@ -2,12 +2,18 @@
 module Parser
 type token = 
   | EOF
+  | COMMA
+  | RIGHTBRACKET
+  | LEFTBRACKET
   | FLOAT of (float)
   | INT of (int)
   | RIGHTBRACE
   | LEFTBRACE
 type tokenId = 
     | TOKEN_EOF
+    | TOKEN_COMMA
+    | TOKEN_RIGHTBRACKET
+    | TOKEN_LEFTBRACKET
     | TOKEN_FLOAT
     | TOKEN_INT
     | TOKEN_RIGHTBRACE
@@ -17,6 +23,9 @@ type tokenId =
 type nonTerminalId = 
     | NONTERM__startstart
     | NONTERM_start
+    | NONTERM_value
+    | NONTERM_list
+    | NONTERM_list_values
     | NONTERM_end
 /// This function maps tokens to integer indexes
 val tagOfToken: token -> int

@@ -18,6 +18,9 @@ rule tokenstream = parse
 | newline	{ newline lexbuf; tokenstream lexbuf }
 | "{" { LEFTBRACE }
 | "}" { RIGHTBRACE }
+| "[" { LEFTBRACKET }
+| "]" { RIGHTBRACKET }
+| "," { COMMA }
 | int { INT (int (LexBuffer<_>.LexemeString lexbuf))}
 | float { FLOAT (float (LexBuffer<_>.LexemeString lexbuf))}
 | _    		{ failwith ("ParseError" + LexBuffer<_>.LexemeString lexbuf) }

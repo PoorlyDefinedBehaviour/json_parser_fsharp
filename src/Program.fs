@@ -7,9 +7,8 @@ open Parser
 let parse input =
   Parser.start Lexer.tokenstream (LexBuffer<char>.FromString input)
 
-
 [<EntryPoint>]
 let main _ =
-  printfn "%A" (parse "123.0")
+  printfn "%A" (parse "[1,2,3]")
 
   0
