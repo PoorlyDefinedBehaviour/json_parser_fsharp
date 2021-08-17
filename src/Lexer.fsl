@@ -4,6 +4,9 @@ open Parser
 
 let newline (lexbuf: LexBuffer<_>) = 
   lexbuf.StartPos <- lexbuf.StartPos.NextLine
+
+let unquote (s: string) =
+  s.[1..s.Length - 2]
 }
 
 // Regular expressions
@@ -12,6 +15,8 @@ let newline = ('\n' | '\r' '\n')
 let digit = '-'? ['0'-'9']
 let int = digit+
 let float = digit+'.'digit+
+let letter = ['a'-'z' 'A'-'Z']
+let string = '"' [^'"']* '"'  
 
 rule tokenstream = parse
 | whitespace	{ tokenstream lexbuf }
@@ -21,7 +26,9 @@ rule tokenstream = parse
 | "[" { LEFTBRACKET }
 | "]" { RIGHTBRACKET }
 | "," { COMMA }
-| int { INT (int (LexBuffer<_>.LexemeString lexbuf))}
-| float { FLOAT (float (LexBuffer<_>.LexemeString lexbuf))}
+| ":" { COLON }
+| string { STRING (unquote (LexBuffer<_>.LexemeString lexbuf)) }
+| int { INT (int (LexBuffer<_>.LexemeString lexbuf)) }
+| float { FLOAT (float (LexBuffer<_>.LexemeString lexbuf)) }
 | _    		{ failwith ("ParseError" + LexBuffer<_>.LexemeString lexbuf) }
 | eof   	{ EOF }

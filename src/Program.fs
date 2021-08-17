@@ -9,6 +9,13 @@ let parse input =
 
 [<EntryPoint>]
 let main _ =
-  printfn "%A" (parse "[1,2,3]")
+  let json =
+    """
+    {
+      "id": "a04d0943-e0d9-4da1-a0e1-b521851a2ceb"
+    }
+    """
+
+  printfn "%A" (parse json)
 
   0
