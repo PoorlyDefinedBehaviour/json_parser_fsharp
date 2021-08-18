@@ -49,7 +49,7 @@ object:
 
 object_properties: 
   | STRING COLON value { [($1, $3)] }
-  | COMMA object_properties STRING COLON value { ($3, $5) :: $2 }
+  | object_properties COMMA STRING COLON value { ($3, $5) :: $1 }
 
 // Using F# keywords for nonterminal names is okay.
 end: EOF { 3 }
